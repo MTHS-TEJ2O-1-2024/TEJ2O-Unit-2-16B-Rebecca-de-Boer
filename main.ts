@@ -9,14 +9,6 @@
 radio.setGroup(60)
 basic.showIcon(IconNames.Happy)
 
-// sending 
-input.onButtonPressed(Button.A, function () {
-    basic.showIcon(IconNames.Triangle)
-    radio.sendString("Hello, World!")
-    basic.showIcon(IconNames.Happy)
-})
-
-
 // reciving
 radio.onReceivedString(function (receivedString) {
     basic.clearScreen()
@@ -36,7 +28,9 @@ input.onButtonPressed(Button.A, function () {
         DigitalPin.P2,
         PingUnit.Centimeters
     )
-    if (objectDistance > 10) {
-        basic.showString("you're too close")
+    if (objectDistance < 10) {
+        basic.showIcon(IconNames.Triangle)
+        radio.sendString("you're too close")
+        basic.showIcon(IconNames.Happy)
     }
 })
